@@ -1,17 +1,36 @@
-from PIL import Image, ImageDraw
-import random
+import turtle
+import colorsys
 
-def generate_random_image(width, height):
-    img = Image.new('RGB', (width, height), color = 'white')
-    draw = ImageDraw.Draw(img)
-    for i in range(10):
-        x1 = random.randint(0,width)
-        y1 = random.randint(0,height)
-        x2 = random.randint(0,width)
-        y2 = random.randint(0,height)
-        r,g,b = random.randint(0,255), random.randint(0,255), random.randint(0,255)
-        draw.line((x1,y1,x2,y2),fill=(r,g,b),width=3)
-    return img
+# Set up the turtle screen
+turtle.bgcolor("white")
+turtle.speed(0)  # Fastest drawing speed
 
-img = generate_random_image(200, 200)
-img.show()
+# Set the initial position
+turtle.penup()
+turtle.goto(-400, -100)
+turtle.pendown()
+
+# Define rainbow colors using HSV color space
+colors = [(0.99, 0.13, 1),    # Red
+          (0.98, 0.48, 1),    # Orange
+          (0.95, 0.80, 1),    # Yellow
+          (0.50, 1.00, 1),    # Green
+          (0.15, 1.00, 1),    # Blue
+          (0.72, 0.60, 1)]    # Purple
+
+# Draw the rainbow
+turtle.width(20)
+for color in colors:
+    turtle.pencolor(color)
+    turtle.circle(400, 60)
+    turtle.left(90)
+    turtle.forward(80)
+    turtle.left(90)
+    turtle.circle(400, 60)
+    turtle.penup()
+    turtle.goto(-400, -100)
+    turtle.pendown()
+
+# Hide the turtle and display the result
+turtle.hideturtle()
+turtle.done()
